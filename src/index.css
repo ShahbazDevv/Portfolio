@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #7C3AED;
+  --color-secondary: #A855F7;
+  --color-accent: #22D3EE;
+  --color-background: #050505;
+  --color-surface: #111111;
+  --color-border: #2B2B2B;
+  --color-heading: #FFFFFF;
+  --color-paragraph: #B8B8B8;
+  --color-success: #22C55E;
+  --color-danger: #EF4444;
+  --font-family-poppins: "Poppins", sans-serif;
+}
+
+.light {
+  --color-background: #FAFAFA;
+  --color-surface: #FFFFFF;
+  --color-border: #E5E5E5;
+  --color-heading: #0A0A0A;
+  --color-paragraph: #525252;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-poppins);
+  background-color: var(--color-background);
+  color: var(--color-paragraph);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+.bg-grid {
+  background-image: radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: white;
+}
