@@ -1,4 +1,4 @@
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useParams, useNavigate, useLocation, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   FiGithub,
@@ -58,8 +58,19 @@ function SectionHeading({
 export function ProjectDetail() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const project = projects.find((p) => p.id === id)
+
+  const handleBack = () => {
+    if (location.state?.from === 'homepage') {
+      navigate('/', { state: { scrollTo: 'projects' } })
+    } else if (window.history.length > 2) {
+      navigate(-1)
+    } else {
+      navigate('/')
+    }
+  }
 
   if (!project) {
     return (
@@ -92,8 +103,8 @@ export function ProjectDetail() {
           alt={`${project.title} banner`}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
 
         {/* Back button */}
         <motion.div
@@ -103,7 +114,7 @@ export function ProjectDetail() {
           className="absolute top-6 left-4 sm:left-6 z-20"
         >
           <button
-            onClick={() => navigate(-1)}
+            onClick={handleBack}
             className="flex items-center gap-2 px-4 py-2 rounded-[14px] bg-background/60 backdrop-blur-sm border border-border/50 text-sm text-paragraph hover:text-heading hover:bg-background/80 transition-all"
           >
             <FiArrowLeft size={16} />

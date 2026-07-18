@@ -48,27 +48,23 @@ export const profile = {
   skillCategories: [
     {
       label: 'Flutter Development',
-      skills: ['Flutter', 'Dart', 'Cross Platform Development', 'Responsive UI'],
+      skills: ['Flutter', 'Dart', 'GetX', 'Provider (Basic)'],
     },
     {
-      label: 'State Management',
-      skills: ['GetX'],
-    },
-    {
-      label: 'Backend',
-      skills: ['Firebase', 'Supabase', 'REST API (Learning)'],
+      label: 'Backend & APIs',
+      skills: ['Supabase', 'Firebase', 'REST API', 'JSON'],
     },
     {
       label: 'Development Tools',
-      skills: ['Git', 'GitHub', 'Android Studio', 'VS Code'],
+      skills: ['Git', 'GitHub', 'Android Studio', 'VS Code', 'Postman'],
     },
     {
-      label: 'Architecture',
-      skills: ['MVVM', 'Material Design', 'Flutter ScreenUtil'],
+      label: 'Design & UI',
+      skills: ['Responsive UI', 'Material Design'],
     },
     {
-      label: 'AI',
-      skills: ['Gemini API', 'AI API Integration (Learning)'],
+      label: 'AI & Emerging',
+      skills: ['AI Integration', 'Prompt Engineering'],
     },
   ],
 

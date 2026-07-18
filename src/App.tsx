@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { lazy, Suspense, useEffect, useState } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { ThemeProvider } from '@/lib/theme-provider'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
@@ -31,7 +31,33 @@ function HomePage() {
   )
 }
 
-function App() {
+function AppContent() {
+  const location = useLocation()
+  const [scrollTarget, setScrollTarget] = useState<string | null>(null)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      const target = location.state?.scrollTo as string | undefined
+      if (target) {
+        setScrollTarget(target)
+        window.history.replaceState({}, document.title)
+      }
+    }
+  }, [location.pathname, location.key])
+
+  useEffect(() => {
+    if (!scrollTarget) return
+    const timer = setTimeout(() => {
+      document.getElementById(scrollTarget)?.scrollIntoView({ behavior: 'smooth' })
+      setScrollTarget(null)
+    }, 120)
+    return () => clearTimeout(timer)
+  }, [scrollTarget])
+
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-background transition-colors duration-300">
@@ -49,6 +75,10 @@ function App() {
       </div>
     </ThemeProvider>
   )
+}
+
+function App() {
+  return <AppContent />
 }
 
 export default App
