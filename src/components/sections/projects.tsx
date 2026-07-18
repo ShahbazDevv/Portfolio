@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FiGithub, FiExternalLink, FiArrowRight } from 'react-icons/fi'
 import { SectionHeader } from '@/components/ui/section-header'
@@ -124,7 +125,7 @@ export function Projects() {
                     )}
                   </div>
                   <div className="flex items-center gap-3">
-                    <a href={`/project/${project.id}`}>
+                    <Link to={`/project/${project.id}`}>
                       <Button
                         variant="default"
                         size="sm"
@@ -133,7 +134,7 @@ export function Projects() {
                         <FiExternalLink size={12} />
                         View Details
                       </Button>
-                    </a>
+                    </Link>
                     <a
                       href={project.githubUrl}
                       target="_blank"
@@ -181,7 +182,7 @@ export function Projects() {
                     )}
                   </div>
                   <div className="flex items-center gap-3">
-                    <a href={`/project/${project.id}`}>
+                    <Link to={`/project/${project.id}`}>
                       <Button
                         variant="default"
                         size="sm"
@@ -190,7 +191,7 @@ export function Projects() {
                         <FiExternalLink size={12} />
                         View Details
                       </Button>
-                    </a>
+                    </Link>
                     <a
                       href={project.githubUrl}
                       target="_blank"
