@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowDown, FileText, Eye, Mail } from 'lucide-react'
+import { ArrowDown, Eye, Mail } from 'lucide-react'
 import { FiGithub } from 'react-icons/fi'
 import { Button } from '@/components/ui/button'
+import { ResumeModal } from '@/components/ui/resume-modal'
 import { profile } from '@/data/profile'
 
 const socialLinks = [
@@ -10,8 +12,10 @@ const socialLinks = [
 ]
 
 export function Hero() {
+  const [isResumeOpen, setIsResumeOpen] = useState(false)
   return (
-    <section
+    <>
+      <section
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden pt-20"
     >
@@ -73,12 +77,14 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="flex flex-wrap items-center gap-4 justify-center lg:justify-start mb-8"
             >
-              <a href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
-                <Button variant="default" size="lg">
-                  <FileText size={18} className="mr-2" />
-                  Download Resume
-                </Button>
-              </a>
+              <Button
+                variant="default"
+                size="lg"
+                onClick={() => setIsResumeOpen(true)}
+              >
+                <Eye size={18} className="mr-2" />
+                View Resume
+              </Button>
               <a href="#projects">
                 <Button variant="secondary" size="lg">
                   <Eye size={18} className="mr-2" />
@@ -161,5 +167,10 @@ export function Hero() {
         </a>
       </motion.div>
     </section>
+    <ResumeModal
+      isOpen={isResumeOpen}
+      onClose={() => setIsResumeOpen(false)}
+    />
+  </>
   )
 }

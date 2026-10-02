@@ -1,12 +1,16 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FileText, Download, Eye } from 'lucide-react'
 import { SectionHeader } from '@/components/ui/section-header'
 import { Button } from '@/components/ui/button'
+import { ResumeModal } from '@/components/ui/resume-modal'
 import { profile } from '@/data/profile'
 
 export function ResumeSection() {
+  const [isResumeOpen, setIsResumeOpen] = useState(false)
   return (
-    <section id="resume" className="py-24 relative">
+    <>
+      <section id="resume" className="py-24 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/3 to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeader
@@ -37,7 +41,8 @@ export function ResumeSection() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a
-                href={profile.resumeUrl}
+                href="/Shahbaz_CV.pdf"
+                download="Shahbaz_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -46,20 +51,23 @@ export function ResumeSection() {
                   Download Resume
                 </Button>
               </a>
-              <a
-                href={profile.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Button
+                variant="secondary"
+                size="lg"
+                onClick={() => setIsResumeOpen(true)}
               >
-                <Button variant="secondary" size="lg">
-                  <Eye size={18} className="mr-2" />
-                  View Resume
-                </Button>
-              </a>
+                <Eye size={18} className="mr-2" />
+                View Resume
+              </Button>
             </div>
           </div>
         </motion.div>
       </div>
     </section>
+    <ResumeModal
+      isOpen={isResumeOpen}
+      onClose={() => setIsResumeOpen(false)}
+    />
+  </>
   )
 }
