@@ -7,7 +7,7 @@ export const profile = {
   email: 'msha82072@gmail.com',
   phone: '+923123011315',
   github: 'https://github.com/ShahbazDevv',
-  resumeUrl: '/Shahbaz_CV.pdf',
+  resumeUrl: '/My_CV.pdf',
   imageUrl: '/profile.jpeg',
 
   heroParagraph:

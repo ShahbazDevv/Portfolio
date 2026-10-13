@@ -2,9 +2,11 @@ export interface Project {
   id: string
   title: string
   shortDescription: string
+  heroDescription?: string
   fullDescription: string
   category: string
   technologies: string[]
+  cardTechnologies?: string[]
   githubUrl: string
   liveDemoUrl?: string
   coverImage: string
@@ -380,5 +382,81 @@ export const projects: Project[] = [
     ],
     currentStatus:
       'This project was developed as part of my Flutter learning journey and portfolio. It demonstrates my understanding of Flutter development, Material 3 theming, GetX state management, local-first architecture, device sensor integration, and complex algorithmic implementations in Dart. While it is not intended as a production-ready application, it reflects the practical skills I gained during development.',
+  },
+  {
+    id: 'ai-genius',
+    title: 'AI Genius',
+    shortDescription:
+      "A Flutter gift recommendation app with a FastAPI backend that suggests gift categories and real products within the user's budget.",
+    heroDescription:
+      'A full-stack Flutter app where you describe the person you are buying for and get gift ideas that never go over your budget, powered by a FastAPI backend and a PostgreSQL catalogue.',
+    fullDescription:
+      'AI Genius takes the relationship, age group, gender, occasion, budget (PKR 500 to 15,000), interests and gift styles of the person you are buying for, sends them to a FastAPI backend, and returns up to four gift categories with real products from a catalogue of 48 Daraz Pakistan listings, collected with AI assistance and then checked manually. The first version uses a deterministic rule-based scoring engine, and the budget is enforced on the server. A machine learning ranking model is planned as a next step. Catalogue prices are indicative and the project is a portfolio demo, not a production store.',
+    category: 'AI • Gifting • Flutter',
+    technologies: [
+      'Flutter',
+      'Dart',
+      'GetX',
+      'Drift',
+      'FastAPI',
+      'Python',
+      'PostgreSQL',
+      'Supabase',
+      'SQLAlchemy',
+      'FastAPI Cloud',
+    ],
+    cardTechnologies: [
+      'Flutter',
+      'Dart',
+      'GetX',
+      'FastAPI',
+      'Python',
+      'PostgreSQL',
+      'Supabase',
+      'Drift',
+    ],
+    githubUrl: 'https://github.com/ShahbazDevv/Ai-Genius',
+    coverImage: '/projects/ai-genius.jpg',
+    features: [
+      'Sectioned preference form with a PKR budget slider, interests and gift styles',
+      'Rule-based recommendation engine with human-readable reasons, no raw scores shown',
+      'Strict budget rule enforced on the server, products above the budget are never shown',
+      'Product list with sorting, product details and a View on Store link',
+      'Saved gifts and history stored locally with SQLite (Drift) and available offline',
+      'Friendly handling of no internet, timeouts, rate limits and server errors',
+      'Shared API contract and 49 automated backend tests',
+    ],
+    status: 'completed',
+    featured: true,
+    learningObjectives: [
+      'Building a full-stack mobile architecture with Flutter and FastAPI',
+      'Enforcing server-side validation and strict budget business logic',
+      'Implementing offline-first persistence with SQLite using Drift',
+      'Designing and querying relational schemas with PostgreSQL and SQLAlchemy',
+      'Creating end-to-end automated testing pipelines across client and API',
+    ],
+    mainObjective:
+      "To build a complete mobile product end to end, a Flutter app, a REST API, a database and a deployed backend, that recommends gifts from a person's details while never exceeding the user's budget.",
+    uiUxHighlights: [
+      'Deep purple and yellow design with light and dark themes',
+      'Animated AI loading screen',
+      'Clear empty states when no product fits the budget',
+      'Reusable components and consistent cards',
+    ],
+    challengesSolved: [
+      "Enforcing strict budget rules on the server so products exceeding the selected PKR budget are never shown",
+      'Designing a deterministic rule-based recommendation engine that generates clear human-readable reasons',
+      'Maintaining offline data availability with Drift SQLite for saved gifts and recommendation history',
+      'Implementing robust error handling for connection timeouts, rate limits, and server-side exceptions',
+    ],
+    whatILearned: [
+      'Designing shared API contracts and maintaining backend reliability with 49 automated tests',
+      'Integrating FastAPI with PostgreSQL on Supabase using SQLAlchemy models and repositories',
+      'Architecting clean GetX state management coupled with Drift local database in Flutter',
+      'Building responsive theme systems supporting both deep purple dark and light visual identities',
+      'Handling asynchronous API states with animated loading screens and helpful fallback states',
+    ],
+    currentStatus:
+      'This project was developed as part of my Flutter learning journey and portfolio. It demonstrates end-to-end full-stack mobile development with Flutter, FastAPI, PostgreSQL, Supabase, and Drift. While it is not intended as a production commercial application, it reflects the practical skills gained during development.',
   },
 ]

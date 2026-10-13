@@ -41,8 +41,8 @@ export function ResumeSection() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a
-                href="/Shahbaz_CV.pdf"
-                download="Shahbaz_CV.pdf"
+                href="/My_CV.pdf"
+                download="My_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >

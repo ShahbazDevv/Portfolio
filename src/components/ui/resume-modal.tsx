@@ -12,7 +12,7 @@ interface ResumeModalProps {
 export function ResumeModal({
   isOpen,
   onClose,
-  resumeUrl = '/Shahbaz_CV.pdf',
+  resumeUrl = '/My_CV.pdf',
 }: ResumeModalProps) {
   // Close on Escape key & lock scroll
   useEffect(() => {
@@ -61,14 +61,14 @@ export function ResumeModal({
                   <h3 className="text-base font-semibold text-heading">
                     Resume Preview
                   </h3>
-                  <p className="text-xs text-paragraph">Shahbaz_CV.pdf</p>
+                  <p className="text-xs text-paragraph">My_CV.pdf</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-2">
                 <a
                   href={resumeUrl}
-                  download="Shahbaz_CV.pdf"
+                  download="My_CV.pdf"
                   className="hidden sm:inline-flex"
                 >
                   <Button variant="default" size="sm">
@@ -125,7 +125,7 @@ export function ResumeModal({
                 </a>
                 <a
                   href={resumeUrl}
-                  download="Shahbaz_CV.pdf"
+                  download="My_CV.pdf"
                   className="w-full"
                 >
                   <Button variant="default" className="w-full">
@@ -143,7 +143,7 @@ export function ResumeModal({
               </Button>
               <a
                 href={resumeUrl}
-                download="Shahbaz_CV.pdf"
+                download="My_CV.pdf"
               >
                 <Button variant="default" size="sm">
                   <Download size={15} className="mr-1.5" />

@@ -20,4 +20,16 @@
     <loc>https://shahbazportfolio.vercel.app/project/hydratrack</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://shahbazportfolio.vercel.app/project/plantics</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shahbazportfolio.vercel.app/project/noor-quran</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shahbazportfolio.vercel.app/project/ai-genius</loc>
+    <priority>0.8</priority>
+  </url>
 </urlset>

@@ -1,4 +1,4 @@
-import { useParams, useNavigate, useLocation, Link } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   FiGithub,
@@ -63,12 +63,19 @@ export function ProjectDetail() {
   const project = projects.find((p) => p.id === id)
 
   const handleBack = () => {
-    if (location.state?.from === 'homepage') {
-      navigate('/', { state: { scrollTo: 'projects' } })
-    } else if (window.history.length > 2) {
+    const hasInternalHistory = Boolean(
+      location.state?.from ||
+      (typeof window !== 'undefined' &&
+        window.history.state &&
+        typeof window.history.state.idx === 'number' &&
+        window.history.state.idx > 0)
+    )
+
+    sessionStorage.setItem('scroll_to_section', 'projects')
+    if (hasInternalHistory) {
       navigate(-1)
     } else {
-      navigate('/')
+      navigate('/#projects', { state: { scrollTo: 'projects' } })
     }
   }
 
@@ -140,7 +147,7 @@ export function ProjectDetail() {
               {project.title}
             </h1>
             <p className="text-white/70 max-w-3xl text-sm sm:text-base md:text-lg leading-relaxed">
-              {project.shortDescription}
+              {project.heroDescription || project.shortDescription}
             </p>
           </motion.div>
         </div>
@@ -350,16 +357,15 @@ export function ProjectDetail() {
             )}
 
             {/* Back to Projects */}
-            <Link to="/">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="w-full gap-2 text-paragraph hover:text-heading"
-              >
-                <FiArrowLeft size={14} />
-                Back to All Projects
-              </Button>
-            </Link>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleBack}
+              className="w-full gap-2 text-paragraph hover:text-heading cursor-pointer"
+            >
+              <FiArrowLeft size={14} />
+              Back to All Projects
+            </Button>
           </motion.aside>
         </div>
       </div>

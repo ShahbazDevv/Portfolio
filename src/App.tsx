@@ -36,26 +36,52 @@ function AppContent() {
   const [scrollTarget, setScrollTarget] = useState<string | null>(null)
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [location.pathname])
-
-  useEffect(() => {
     if (location.pathname === '/') {
-      const target = location.state?.scrollTo as string | undefined
+      const savedTarget = sessionStorage.getItem('scroll_to_section')
+      if (savedTarget) {
+        sessionStorage.removeItem('scroll_to_section')
+      }
+      const hashTarget = location.hash ? location.hash.replace('#', '') : null
+      const stateTarget = location.state?.scrollTo as string | undefined
+      const target = stateTarget || savedTarget || hashTarget
+
       if (target) {
         setScrollTarget(target)
-        window.history.replaceState({}, document.title)
+        window.history.replaceState({}, document.title, location.pathname)
+        return
       }
     }
-  }, [location.pathname, location.key])
+    window.scrollTo(0, 0)
+  }, [location.pathname, location.key, location.hash])
 
   useEffect(() => {
     if (!scrollTarget) return
-    const timer = setTimeout(() => {
-      document.getElementById(scrollTarget)?.scrollIntoView({ behavior: 'smooth' })
-      setScrollTarget(null)
-    }, 120)
-    return () => clearTimeout(timer)
+
+    let cancelled = false
+    const scrollToElement = () => {
+      const el = document.getElementById(scrollTarget)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' })
+        return true
+      }
+      return false
+    }
+
+    const timers = [
+      setTimeout(() => { if (!cancelled) scrollToElement() }, 60),
+      setTimeout(() => { if (!cancelled) scrollToElement() }, 200),
+      setTimeout(() => {
+        if (!cancelled) {
+          scrollToElement()
+          setScrollTarget(null)
+        }
+      }, 450),
+    ]
+
+    return () => {
+      cancelled = true
+      timers.forEach(clearTimeout)
+    }
   }, [scrollTarget])
 
   return (
